@@ -29,7 +29,8 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
-        context: .
+        context: . 
         push: true
         tags: ghcr.io/${{ github.repository }}:latest
-       
+        outputs: type=image,name=target,annotation-index.org.opencontainers.image.source=https://github.com/octocat/my-repo,annotation-index.org.opencontainers.image.description=MCP Repl,annotation-index.org.opencontainers.image.licenses=MIT
+
