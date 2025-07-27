@@ -34,5 +34,5 @@ jobs:
     - name: Set Up Docker Buildx
       uses: docker/setup-buildx-action@v3
     - name: Build the Docker image
-      run: docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/dinavinter/mcp-py-repl:$(date +%s) --push . --file Dockerfil      
+      run: docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/dinavinter/mcp-py-repl:$(date +%s) --push . --file Dockerfile     
       
