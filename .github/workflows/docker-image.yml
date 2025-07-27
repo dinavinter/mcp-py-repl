@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  build:
+  docker:
     permissions:
       packages: write # Grants write access to GitHub Packages
       contents: read  # Grants read access to repository contents (often needed for checkout)
