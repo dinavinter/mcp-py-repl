@@ -1,4 +1,7 @@
 name: Docker Image CI
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 on:
   push:
@@ -8,10 +11,12 @@ on:
 
 jobs:
 
-  docker:
+  build-and-push-image:
     permissions:
-      packages: write # Grants write access to GitHub Packages
-      contents: read  # Grants read access to repository contents (often needed for checkout)
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +30,11 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
