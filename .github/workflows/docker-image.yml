@@ -15,5 +15,5 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker buildx build --builder=mcp-builder --platform linux/amd64,linux/arm64 -t ghcr.io/dinavinter/mcp-py-repl:$(date +%s) --push . --file Dockerfil      
+      run: docker buildx build linux/amd64,linux/arm64 -t ghcr.io/dinavinter/mcp-py-repl:$(date +%s) --push . --file Dockerfil      
       
